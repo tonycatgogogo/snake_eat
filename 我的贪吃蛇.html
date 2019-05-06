@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的贪吃蛇</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            position: relative;
+        }
+        .map{
+            width: 1000px;
+            height: 600px;
+            background: url("./images/bg.jpg") no-repeat center/cover;
+            position: relative;
+            margin: 15px auto 0;
+        }
+        .control {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 150px;
+            height: 50px;
+            margin: 0 auto;
+            box-shadow: 0px 5px 5px 0 #ccc;
+        }
+        .control button {
+            display: inline-block;
+            padding: 5px;
+            text-align: center;
+            margin: 12px 15px;
+            border: none;
+            background-color: #6073ff;
+        }
+        .control .btn_start {
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="map"></div>
+    <div class="control">
+        <button class="btn_start">开始游戏</button>
+        <button class="btn_pause">暂停</button>
+    </div>
+</div>
+<script src="food1.js"></script>
+<script src="snake1.js"></script>
+<script src="game1.js"></script>
+<script>
+    var myGame=new Game(document.querySelector(".map"));
+    var start = document.querySelector('.btn_start')
+    var pause = document.querySelector('.btn_pause')
+    start.onclick = function(){
+        if(pause.innerHTML === "暂停"){
+            myGame.init();
+            start.innerText = "重新开始"
+        }else if (pause.innerHTML === "继续"){
+            pause.innerHTML = '暂停'
+            myGame.init();
+            start.innerText = "重新开始"
+        }
+    }
+    pause.onclick = function(){
+        if(pause.innerHTML === "暂停"){
+            myGame.pause()
+            pause.innerHTML = '继续'
+        }else if(pause.innerHTML === "继续") {
+            myGame.continue()
+            pause.innerHTML = '暂停'
+        }
+    }
+</script>
+</body>
+</html>
